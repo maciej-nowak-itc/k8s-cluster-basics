@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  labels:
+    app.kubernetes.io/name: argocd-cmd-params-cm
+    app.kubernetes.io/part-of: argocd
+  name: argocd-cmd-params-cm
+data:
+  server.insecure: "true"
+  # Allow for Application objects, that are deployed in namespaces other than Argo control plane,
+  # to connect to ArgoCD projects
+  application.namespaces: "*"
