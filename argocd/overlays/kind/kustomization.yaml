@@ -3,5 +3,7 @@ kind: Kustomization
 namespace: argocd
 resources:
   - ../../base
+  # Instal IngressContoller as part of cluster set up
+  # - https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/kind/deploy.yaml
   - argo-server-ingress-kind.yaml
 

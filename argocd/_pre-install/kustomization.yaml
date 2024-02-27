@@ -1,0 +1,11 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+- argocd.ns.yaml
+# Local instance needed. Protected from Git store.
+# Required name: oidc.azure.clientsecret
+# Required values:
+# * clientSecret 
+# * clientID
+# * issuer a URI for the IdP. For AzureAD/Entra be sure to supply tenant id.
+- secret.oidc.azure.yaml
