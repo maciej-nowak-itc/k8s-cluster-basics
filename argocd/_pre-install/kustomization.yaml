@@ -9,3 +9,4 @@ resources:
 # * clientID
 # * issuer a URI for the IdP. For AzureAD/Entra be sure to supply tenant id.
 - secret.oidc.azure.yaml
+- https://github.com/argoproj/argo-cd/manifests/crds\?ref\=stable

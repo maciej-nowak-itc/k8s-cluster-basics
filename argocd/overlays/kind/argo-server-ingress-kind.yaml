@@ -4,9 +4,10 @@ metadata:
   name: argocd-server-kind-ingress
   namespace: argocd
   annotations:
-    kubernetes.io/ingress.class: "nginx"
+    #kubernetes.io/ingress.class: "nginx"
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
+  ingressClassName: nginx
   rules:
   - host: argocd.kind.localhost
     http:

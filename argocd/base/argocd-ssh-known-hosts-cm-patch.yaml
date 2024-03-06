@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  labels:
+    app.kubernetes.io/name: argocd-rbac-cm
+    app.kubernetes.io/part-of: argocd
+  name: argocd-ssh-known-hosts-cm
+data:
+  # DONT. Will override original values, create whole file through script similar to https://argo-cd.readthedocs.io/en/stable/operator-manual/declarative-setup/#ssh-known-host-public-keys
+  # Or add your extensins to the original list in imperative way shttps://argo-cd.readthedocs.io/en/stable/user-guide/private-repositories/#unknown-ssh-hosts
+  ssh_known_hosts: |
+    bitbucket.wolterskluwer.io ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCMaQ6dOY2aqnZ9qbTPxF5jIWj2WMfaqDI4DlHgtnL1BWIh0Gw8sgffNvrlkflXnCkodxfqx6szuY5QbRYE4BfIc1S+yjhzQGj4QID4O8dpDE+SHPFYTqGk1j1it5iswDTklijxTjq6W2BA/MvufZMumMsKgmoXlkCa/L0lCC8U2f5BakmijnvnJi5NOBl76u+vMKWAOvtlcLNsc86WYlepz189AcoaP3NLQwq8Qg51EgZaswxzfpb+NfurUKuBmDuuz2gtIYesX5Tq7gjuPVqPE+cyvT2IL/L0zDXkkEoQAOZjQkOzmHRSlCnO86AzGnE95sY9BfRzucBi3nx8u3Lp

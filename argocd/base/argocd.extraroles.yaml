@@ -2,7 +2,7 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  name: argocd-server-multinamespace
+  name: argocd-server-multinamespace-cr
 rules:
 - apiGroups: ["argoproj.io"]
   resources: ["applications", "appprojects", "applicationsets"]
@@ -10,16 +10,43 @@ rules:
 - apiGroups: [""]
   resources: ["namespaces"]
   verbs: ["get", "list", "watch"]
+# Because of argocd-server logs analysies and errors it sinks about not being able to create Events in external NS
+- apiGroups: [""]
+  resources: ["events"]
+  verbs: ["*"]
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
-  name: argocd-server-multinamespace
+  name: argocd-server-multinamespace-crb
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
-  name: argocd-server-multinamespace
+  name: argocd-server-multinamespace-cr
 subjects:
 - kind: ServiceAccount
   name: argocd-server
+  namespace: argocd
+---
+# Beacuse of errors I see in argocd-notifications-controller logs, unable to list applications in external NS
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: argocd-notification-multinamespace-cr
+rules:
+- apiGroups: ["argoproj.io"]
+  resources: ["applications", "appprojects", "applicationsets"]
+  verbs: ["*"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: argocd-notification-multinamespace-crb
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: argocd-notification-multinamespace-cr
+subjects:
+- kind: ServiceAccount
+  name: argocd-notifications-controller
   namespace: argocd

@@ -9,7 +9,3 @@ data:
   policy.mscadmin.csv: |
     p, role:msc-admin, *, *, *, allow
     g, 5ef3ff5f-4211-4f8c-b822-c7ddc862ab81, role:msc-admin
-
-#  policy.cis.csv: |
-#    p, role:cis-team, *, *, cis-team-project/*, allow
-#    g, 0a39755b-5dff-4dae-bb0c-bc53a464cbbe, role:cis-team

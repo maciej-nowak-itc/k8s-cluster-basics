@@ -2,12 +2,11 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: argocd
 resources:
-# Run CRDs separately via 
-# kubectl apply -k https://github.com/argoproj/argo-cd/manifests/crds\?ref\=stable
-#- https://github.com/argoproj/argo-cd/manifests/crds\?ref\=stable
-- https://raw.githubusercontent.com/argoproj/argo-cd/v2.10.1/manifests/install.yaml
-#- argocd.extraroles.yaml
+- https://raw.githubusercontent.com/argoproj/argo-cd/v2.10.2/manifests/install.yaml
+- argocd.extraroles.yaml
 patches:
 - path: argocd-cmd-params-cm-patch.yaml
 - path: argocd-cm-patch.yaml
 - path: argocd-rbac-cm-patch.yaml
+# Don't enable ssh overload, see comments in patch file.
+#- path: argocd-ssh-known-hosts-cm-patch.yaml
